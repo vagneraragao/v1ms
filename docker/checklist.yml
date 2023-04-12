@@ -1,0 +1,7 @@
+checklist:
+  docker:
+    container:
+      name: checklist
+  port: 8558
+  debugPort: 5000
+  debug: "true"

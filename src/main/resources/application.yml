@@ -1,0 +1,82 @@
+server:
+  port: ${SERVER_PORT:8558}
+  servlet.context-path: ${BASE_PATH:/checklist}
+  tomcat:
+    max-threads: ${MAX_THREADS}
+    accept-count: ${ACCEPT_COUNT:100}
+  compression:
+    enabled: true
+    mime-types:
+      - application/json
+      - application/json;charset=UTF-8
+      - application/hal+json
+      - application/hal+json;charset=UTF-8
+      - multipart/form-data
+  use-forward-headers: true
+  forward-headers-strategy: framework
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    disable-swagger-default-url: true
+  show-login-endpoint: true
+
+spring:
+  profiles:
+    active: local
+    
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    properties:
+      hibernate:
+        temp.use_jdbc_metadata_defaults: true
+        jdbc.lob.non_contextual_creation: true
+        default_schema: ${PG_SCHEMA:checklist}
+        hbm2ddl.auto: none
+    open-in-view: false
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    platform: postgres
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      driverClassName: org.postgresql.Driver
+      connectionInitSql: SELECT 1
+      minimumIdle: 1
+      maximumPoolSize: 5
+      connectionTimeout: 60000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+      poolName: checklist-pool
+      autoCommit: false
+      schema: ${PG_SCHEMA:checklist}
+
+  flyway:
+    enabled: ${FLYWAY_ENABLED:true}
+    clean-disabled: false
+    schemas: ${PG_SCHEMA:checklist}
+    locations:
+      - classpath:db/migration
+
+  main:
+    allow-bean-definition-overriding: true
+
+  cache:
+    cache-names: user-permissions
+    caffeine.spec: expireAfterAccess=300s
+  
+management:
+  metrics:
+    export:
+      elastic:
+        auto-create-index: false
+  server:
+    port: ${ADMIN_HTTP_PORT:8448}
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /management
+
+

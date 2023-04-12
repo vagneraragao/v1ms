@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  checklist:
+    container_name: "@checklist.docker.container.name@"
+    image: "@checklist.docker.image.name@:@project.version@"
+    ports:
+      - "@checklist.port@:@checklist.port@"
+    environment:
+      DEBUG: "@checklist.debug@"
+      SPRING_PROFILES_ACTIVE: dev

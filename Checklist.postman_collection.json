@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "327edc4c-e912-413b-8d7c-546edb04d7cb",
+		"name": "Checklist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Teste 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8118/tests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8118",
+					"path": [
+						"tests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Load All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8118/tests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8118",
+					"path": [
+						"tests"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

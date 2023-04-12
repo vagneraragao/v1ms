@@ -1,0 +1,8 @@
+/.settings/
+/target/
+/.checkstyle
+/.classpath
+/.factorypath
+/.project
+/checklist-ms.iml
+/.idea/

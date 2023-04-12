@@ -1,0 +1,22 @@
+spring:
+
+  datasource:
+    url: ${PG_JDBC_URL:jdbc:postgresql://dsancalagon.linus.cbdomain.crb:8080/checklist_dev_credibom}
+    username: ${PG_USRNAME:svc_dev_checklist_credibom}
+    password: ${PG_PASSWORD:fNWdJZXfDd5uTh3cpAkS}
+
+  cache:
+    caffeine.spec: expireAfterAccess=300s
+
+logging:
+  level:
+    pt:
+      credibom: ${APP_LOG_LEVEL:DEBUG}
+    org:
+      jooq:
+        tools: ${LOG_LEVEL:DEBUG}
+      springframework:
+        security: ${LOG_LEVEL:DEBUG}
+      arun: ${LOG_LEVEL:DEBUG}
+    root: ${LOG_LEVEL:DEBUG}
+
